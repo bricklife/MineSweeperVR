@@ -22,7 +22,9 @@ public class Field : MonoBehaviour
             for (int x = 0; x < num; x++)
             {
                 Add(cube, x, y);
-                Add(bomb, x, y);
+                if (Random.value < 0.3) {
+                    Add(bomb, x, y);
+                }
             }
         }
     }
