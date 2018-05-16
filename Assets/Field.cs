@@ -4,34 +4,35 @@ using UnityEngine;
 
 public class Field : MonoBehaviour
 {
-
     public GameObject cube;
     public GameObject bomb;
+
+    static Vector3 center = new Vector3(0f, 0, 0);
+    static int num = 90;
+    static float r = 10;
+    static float size = Mathf.PI * r * 2 / num;
+    static float angle = 360 / num;
+    static float scale = 0.98f;
 
     // Use this for initialization
     void Start()
     {
-        var center = new Vector3(0f, 0, 0);
-        var num = 90;
-        var r = 10;
-        var size = Mathf.PI * r * 2 / num;
-        var angle = 360 / num;
-        var scale = 0.98f;
-
         for (int y = -10; y <= 10; y++)
         {
-            for (int i = 0; i < num; i++)
+            for (int x = 0; x < num; x++)
             {
-
-                foreach (var item in new GameObject[] {cube, bomb})
-                {
-                    var obj = Instantiate(item, new Vector3(0f, y * size, r + size / 2), Quaternion.identity);
-                    obj.transform.RotateAround(center, Vector3.up, angle * i);
-                    obj.transform.localScale = new Vector3(size * scale, size * scale, size * scale);
-                    obj.transform.parent = transform;
-                }
+                Add(cube, x, y);
+                Add(bomb, x, y);
             }
         }
+    }
+
+    void Add(GameObject target, int x, int y)
+    {
+        var obj = Instantiate(target, new Vector3(0f, y * size, r + size / 2), Quaternion.identity);
+        obj.transform.RotateAround(center, Vector3.up, angle * x);
+        obj.transform.localScale = new Vector3(size * scale, size * scale, size * scale);
+        obj.transform.parent = gameObject.transform;
     }
 
     // Update is called once per frame
