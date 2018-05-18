@@ -7,19 +7,24 @@ public class Field : MonoBehaviour
     public GameObject cube;
     public GameObject bomb;
 
-    static Vector3 center = new Vector3(0f, 0, 0);
-    static int num = 90;
-    static float r = 10;
-    static float size = Mathf.PI * r * 2 / num;
-    static float angle = 360 / num;
-    static float scale = 0.98f;
+    public Vector3 center = new Vector3(0f, 0, 0);
+    public int width = 90;
+    public int height = 10;
+    public float r = 10;
+    public float scale = 0.98f;
+
+    private float size = 0;
+    private float angle = 0;
 
     // Use this for initialization
     void Start()
     {
-        for (int y = -10; y <= 10; y++)
+        size = Mathf.PI * r * 2 / width;
+        angle = 360 / width;
+
+        for (int y = 0; y < height; y++)
         {
-            for (int x = 0; x < num; x++)
+            for (int x = 0; x < width; x++)
             {
                 Add(cube, x, y);
                 if (Random.value < 0.3) {
@@ -29,12 +34,15 @@ public class Field : MonoBehaviour
         }
     }
 
-    void Add(GameObject target, int x, int y)
+    private GameObject Add(GameObject target, int x, int y)
     {
-        var obj = Instantiate(target, new Vector3(0f, y * size, r + size / 2), Quaternion.identity);
+        var obj = Instantiate(target, new Vector3(0f, (y - height / 2) * size, r + size / 2), Quaternion.identity);
+
         obj.transform.RotateAround(center, Vector3.up, angle * x);
         obj.transform.localScale = new Vector3(size * scale, size * scale, size * scale);
         obj.transform.parent = gameObject.transform;
+
+        return obj;
     }
 
     // Update is called once per frame
