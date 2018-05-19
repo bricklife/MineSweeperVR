@@ -18,6 +18,7 @@ public class Field : MonoBehaviour
     private float size;
     private float angle;
 
+    private GameObject[,] cubes;
     private bool[,] bombs;
 
     // Use this for initialization
@@ -26,13 +27,15 @@ public class Field : MonoBehaviour
         size = Mathf.PI * r * 2 / width;
         angle = 360 / width;
 
-        InitBombs();
+        InitField();
 
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                Add(cube, x, y);
+                var c = Add(cube, x, y);
+                c.GetComponent<Cube>().Setup(this, x, y);
+                cubes[x, y] = c;
 
                 if (Random.value < rate)
                 {
@@ -56,8 +59,9 @@ public class Field : MonoBehaviour
         }
     }
 
-    private void InitBombs()
+    private void InitField()
     {
+        cubes = new GameObject[width, height];
         bombs = new bool[width, height];
     }
 
@@ -113,5 +117,42 @@ public class Field : MonoBehaviour
     {
         //var rotY = Quaternion.AngleAxis(45.0f * Time.deltaTime, Vector3.up);
         //transform.rotation *= rotY;
+    }
+
+    public void Open(int x, int y)
+    {
+        if (y < 0 || y >= height)
+        {
+            return;
+        }
+        if (x < 0)
+        {
+            x += width;
+        }
+        if (x >= width)
+        {
+            x -= width;
+        }
+
+        var c = cubes[x, y];
+        if (!c.activeSelf) {
+            return;
+        }
+
+        c.SetActive(false);
+
+        var num = GetNumOfBombs(x, y);
+        if (num == 0) {
+            Open(x - 1, y - 1);
+            Open(x,     y - 1);
+            Open(x + 1, y - 1);
+
+            Open(x - 1, y);
+            Open(x + 1, y);
+
+            Open(x - 1, y + 1);
+            Open(x,     y + 1);
+            Open(x + 1, y + 1);
+        }
     }
 }

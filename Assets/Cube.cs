@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRStandardAssets.Utils;
 
-public class ChangeColor : MonoBehaviour
+public class Cube : MonoBehaviour
 {
     [SerializeField] private VRInteractiveItem m_InteractiveItem;
     public bool isGazeOver;
+
+    private Field field;
+    private int x;
+    private int y;
 
     private void OnEnable()
     {
@@ -43,6 +47,13 @@ public class ChangeColor : MonoBehaviour
 
     private void HandleUp()
     {
-        Destroy(gameObject);
+        field.Open(x, y);
+    }
+
+    public void Setup(Field field, int x, int y)
+    {
+        this.field = field;
+        this.x = x;
+        this.y = y;
     }
 }
