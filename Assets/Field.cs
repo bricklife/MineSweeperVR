@@ -24,10 +24,21 @@ public class Field : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        InitField();
+    }
+
+    private void InitField()
+    {
+        cubes = new GameObject[width, height];
+        bombs = new bool[width, height];
+
+        foreach (Transform n in gameObject.transform)
+        {
+            Destroy(n.gameObject);
+        }
+
         size = Mathf.PI * r * 2 / width;
         angle = 360 / width;
-
-        InitField();
 
         for (int y = 0; y < height; y++)
         {
@@ -57,12 +68,6 @@ public class Field : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void InitField()
-    {
-        cubes = new GameObject[width, height];
-        bombs = new bool[width, height];
     }
 
     private void SetBomb(int x, int y)
@@ -112,13 +117,6 @@ public class Field : MonoBehaviour
         return obj;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //var rotY = Quaternion.AngleAxis(45.0f * Time.deltaTime, Vector3.up);
-        //transform.rotation *= rotY;
-    }
-
     public void Open(int x, int y)
     {
         if (y < 0 || y >= height)
@@ -135,24 +133,33 @@ public class Field : MonoBehaviour
         }
 
         var c = cubes[x, y];
-        if (!c.activeSelf) {
+        if (!c.activeSelf)
+        {
             return;
         }
 
         c.SetActive(false);
 
         var num = GetNumOfBombs(x, y);
-        if (num == 0) {
+        if (num == 0)
+        {
             Open(x - 1, y - 1);
-            Open(x,     y - 1);
+            Open(x, y - 1);
             Open(x + 1, y - 1);
 
             Open(x - 1, y);
             Open(x + 1, y);
 
             Open(x - 1, y + 1);
-            Open(x,     y + 1);
+            Open(x, y + 1);
             Open(x + 1, y + 1);
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //var rotY = Quaternion.AngleAxis(45.0f * Time.deltaTime, Vector3.up);
+        //transform.rotation *= rotY;
     }
 }
