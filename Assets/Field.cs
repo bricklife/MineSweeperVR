@@ -8,26 +8,28 @@ public class Field : MonoBehaviour
     public GameObject bomb;
     public GameObject number;
 
-    public Vector3 center = new Vector3(0f, 0, 0);
     public int width = 90;
     public int height = 10;
-    public float r = 20;
+    public int numOfBombs = 180;
+
+    public Vector3 center = new Vector3(0f, 0, 0);
+    public float r = 20f;
     public float scale = 0.98f;
-    public float rate = 0.1f;
 
     private float size;
     private float angle;
 
     private GameObject[,] cubes;
     private bool[,] bombs;
+    private bool needsSetup = false;
 
     // Use this for initialization
     void Start()
     {
-        InitField();
+        ResetField();
     }
 
-    private void InitField()
+    public void ResetField()
     {
         cubes = new GameObject[width, height];
         bombs = new bool[width, height];
@@ -38,7 +40,7 @@ public class Field : MonoBehaviour
         }
 
         size = Mathf.PI * r * 2 / width;
-        angle = 360 / width;
+        angle = 360f / width;
 
         for (int y = 0; y < height; y++)
         {
@@ -47,13 +49,30 @@ public class Field : MonoBehaviour
                 var c = Add(cube, x, y);
                 c.GetComponent<Cube>().Setup(this, x, y);
                 cubes[x, y] = c;
-
-                if (Random.value < rate)
-                {
-                    Add(bomb, x, y);
-                    SetBomb(x, y);
-                }
             }
+        }
+
+        needsSetup = true;
+    }
+
+    public void SetupFeild(int exX, int exY)
+    {
+        var restOfNum = numOfBombs;
+        while (restOfNum > 0) {
+            var x = Random.Range(0, width);
+            var y = Random.Range(0, height);
+            if (x == exX && y == exY)
+            {
+                continue;
+            }
+            if (IsBomb(x, y))
+            {
+                continue;
+            }
+
+            Add(bomb, x, y);
+            SetBomb(x, y);
+            restOfNum--;
         }
 
         for (int y = 0; y < height; y++)
@@ -119,6 +138,11 @@ public class Field : MonoBehaviour
 
     public void Open(int x, int y)
     {
+        if (needsSetup) {
+            SetupFeild(x, y);
+            needsSetup = false;
+        }
+
         if (y < 0 || y >= height)
         {
             return;
