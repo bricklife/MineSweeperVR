@@ -9,19 +9,19 @@ public class EditorCameraRotation : MonoBehaviour
         #if UNITY_EDITOR
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            this.transform.Rotate(0, 1, 0);
+            gameObject.transform.Rotate(Vector3.up, 1, Space.World);
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            this.transform.Rotate(0, -1, 0);
+            gameObject.transform.Rotate(Vector3.up, -1, Space.World);
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            this.transform.Rotate(-1, 0, 0);
+            gameObject.transform.Rotate(Vector3.right, -1, Space.Self);
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            this.transform.Rotate(1, 0, 0);
+            gameObject.transform.Rotate(Vector3.right, 1, Space.Self);
         }
         #endif
     }
