@@ -651,7 +651,7 @@ MonoBehaviour:
   cube: {fileID: 1026020415608700, guid: b4716ef8506bc4adcaf0b11af27f4de4, type: 2}
   bomb: {fileID: 1860775419819574, guid: 253ce85eb96fd4b828611b9ff8ac2ee9, type: 2}
   number: {fileID: 1219379675488858, guid: 3876be8bf5dfd48adaa8ad6b8c37631b, type: 2}
-  smile: {fileID: 1399977943006488, guid: da263643e7059415bb1a70d73f58255f, type: 2}
+  smile: {fileID: 1885400381393004, guid: ceef85902343b4970b77bbb8c068c42b, type: 2}
   ground: {fileID: 1017210069}
   ui: {fileID: 135837456}
   width: 90
