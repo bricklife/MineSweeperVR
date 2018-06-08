@@ -19,9 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4694245256516734}
-  - component: {fileID: 114886043330938490}
-  - component: {fileID: 114226027438942472}
   - component: {fileID: 135850065531852620}
+  - component: {fileID: 114547179559894266}
   m_Layer: 0
   m_Name: Smile
   m_TagString: Untagged
@@ -115,18 +114,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1740456191525608}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114226027438942472
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1399977943006488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fea6f8eea666334aaf9869ad8f7bcda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114886043330938490
+--- !u!114 &114547179559894266
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -137,9 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be33c554e59924e23926bbb89d1f8576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractiveItem: {fileID: 114226027438942472}
-  isGazeOver: 0
-  field: {fileID: 0}
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!135 &135850065531852620
 SphereCollider:
   m_ObjectHideFlags: 1

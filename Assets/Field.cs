@@ -55,15 +55,17 @@ public class Field : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
+                var clickedX = x;
+                var clickedY = y;
                 var c = Add(cube, ground, x, y);
-                c.GetComponent<Cube>().Setup(this, x, y);
+                c.GetComponent<Cube>().onClick.AddListener(() => Open(clickedX, clickedY));
                 cubes[x, y] = c;
             }
         }
 
         ui.transform.rotation = Quaternion.identity;
         var s = Add(smile, ui, 0, height + 1);
-        s.GetComponent<Smile>().field = this;
+        s.GetComponent<Smile>().onClick.AddListener(() => ResetField());
         var aim = s.transform.position - center;
         s.transform.rotation = Quaternion.LookRotation(aim);
 

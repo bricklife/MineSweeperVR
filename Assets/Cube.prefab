@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23959732549157204}
   - component: {fileID: 65709106684349350}
   - component: {fileID: 114455493444618732}
-  - component: {fileID: 114592793444512168}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -109,16 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3952bda98fbf64bd08183a59e65dd627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractiveItem: {fileID: 114592793444512168}
-  isGazeOver: 0
---- !u!114 &114592793444512168
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026020415608700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fea6f8eea666334aaf9869ad8f7bcda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

@@ -1,59 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VRStandardAssets.Utils;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
-public class Cube : MonoBehaviour
+public class Cube : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
 {
-    [SerializeField] private VRInteractiveItem m_InteractiveItem;
-    public bool isGazeOver;
+    public UnityEvent onClick = new UnityEvent();
 
-    private Field field;
-    private int x;
-    private int y;
-
-    private void OnEnable()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        m_InteractiveItem.OnOver += HandleOver;
-        m_InteractiveItem.OnOut += HandleOut;
-        m_InteractiveItem.OnDown += HandleClick;
-        m_InteractiveItem.OnUp += HandleUp;
-    }
-
-    private void OnDisable()
-    {
-        m_InteractiveItem.OnUp -= HandleUp;
-        m_InteractiveItem.OnOut -= HandleOut;
-        m_InteractiveItem.OnDown -= HandleClick;
-        m_InteractiveItem.OnUp -= HandleUp;
-    }
-
-    private void HandleOver()
-    {
-        isGazeOver = true;
         gameObject.GetComponent<Renderer>().material.color = Color.green;
     }
 
-    private void HandleOut()
+    public void OnPointerExit(PointerEventData eventData)
     {
-        isGazeOver = false;
         gameObject.GetComponent<Renderer>().material.color = Color.white;
     }
 
-    private void HandleClick()
+    public void OnPointerDown(PointerEventData eventData)
     {
         gameObject.GetComponent<Renderer>().material.color = Color.red;
     }
 
-    private void HandleUp()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        field.Open(x, y);
-    }
-
-    public void Setup(Field field, int x, int y)
-    {
-        this.field = field;
-        this.x = x;
-        this.y = y;
+        onClick.Invoke();
     }
 }

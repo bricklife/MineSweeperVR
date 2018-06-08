@@ -1,27 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VRStandardAssets.Utils;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
-public class Smile : MonoBehaviour
+public class Smile : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private VRInteractiveItem m_InteractiveItem;
-    public bool isGazeOver;
+    public UnityEvent onClick = new UnityEvent();
 
-    public Field field;
-
-    private void OnEnable()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        m_InteractiveItem.OnUp += HandleUp;
-    }
-
-    private void OnDisable()
-    {
-        m_InteractiveItem.OnUp -= HandleUp;
-    }
-
-    private void HandleUp()
-    {
-        field.ResetField();
+        onClick.Invoke();
     }
 }
