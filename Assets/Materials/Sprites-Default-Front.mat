@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites-Default Front
+  m_Name: Sprites-Default-Front
   m_Shader: {fileID: 4800000, guid: b9ddff1265d0345e7af96602f5e5d8c3, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4

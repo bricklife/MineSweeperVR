@@ -8,13 +8,6 @@ public class RayManager : MonoBehaviour
     public OVRCameraRig cameraRig;
     public OVRInputModule inputModule;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         OVRInput.Controller activeController = OVRInput.GetActiveController();

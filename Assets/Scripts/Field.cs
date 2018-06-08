@@ -27,7 +27,6 @@ public class Field : MonoBehaviour
     private bool[,] bombs;
     private bool needsSetup = false;
 
-    // Use this for initialization
     void Start()
     {
         ResetField();
@@ -104,7 +103,7 @@ public class Field : MonoBehaviour
                 if (!IsBomb(x, y) && n > 0 && n < 9)
                 {
                     var num = Add(number, ground, x, y);
-                    num.GetComponent<SpriteChange>().Show(n);
+                    num.GetComponent<Number>().Show(n);
                 }
             }
         }
@@ -220,12 +219,5 @@ public class Field : MonoBehaviour
             Open(x, y + 1);
             Open(x + 1, y + 1);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //var rotY = Quaternion.AngleAxis(45.0f * Time.deltaTime, Vector3.up);
-        //transform.rotation *= rotY;
     }
 }

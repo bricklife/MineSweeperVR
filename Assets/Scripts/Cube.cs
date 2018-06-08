@@ -10,17 +10,17 @@ public class Cube : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        gameObject.GetComponent<Renderer>().material.color = Color.green;
+        GetComponent<Renderer>().material.color = Color.green;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        gameObject.GetComponent<Renderer>().material.color = Color.white;
+        GetComponent<Renderer>().material.color = Color.white;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
+        GetComponent<Renderer>().material.color = Color.red;
     }
 
     public void OnPointerClick(PointerEventData eventData)
