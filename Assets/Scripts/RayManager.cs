@@ -21,13 +21,19 @@ public class RayManager : MonoBehaviour
         Transform activeTransform = cameraRig.centerEyeAnchor;
 
         if ((activeController == OVRInput.Controller.LTouch) || (activeController == OVRInput.Controller.LTrackedRemote))
+        {
             activeTransform = cameraRig.leftHandAnchor;
+        }
 
         if ((activeController == OVRInput.Controller.RTouch) || (activeController == OVRInput.Controller.RTrackedRemote))
+        {
             activeTransform = cameraRig.rightHandAnchor;
+        }
 
         if (activeController == OVRInput.Controller.Touch)
+        {
             activeTransform = cameraRig.rightHandAnchor;
+        }
 
         OVRGazePointer.instance.rayTransform = activeTransform;
         inputModule.rayTransform = activeTransform;
